@@ -3,6 +3,7 @@ React front-end to communicate with Rails API @ https://github.com/brandoncabael
 ## Table of Contents
 - [Installation Non Docker](#installation-non-docker)
 - [Installation Docker](#installation-docker)
+- [Interaction](#interaction)
 
 ## Installation Non Docker
 Ensure Rails Todo API is installed first
@@ -44,4 +45,11 @@ Run the docker container
 
 Navigate to hosted URL
 `http://localhost:5000`
+
+## Interaction
+Once navigated to URL `http://localhost:5000` click signup link to signup new user
+
+Proceed to Signin page to signin using newly created credentials
+
+Click Todos link to view existing Projects and todos, update done status, or delete Todos or Items!
 
