@@ -1,10 +1,10 @@
 React front-end to communicate with Rails API @ https://github.com/brandoncabael/rails-todo-api
 
 ## Table of Contents
-- [Installation - Non-Docker](#installation-non-docker)
-- [Installation - Docker](#installation-docker)
+- [Installation Non Docker](#installation-non-docker)
+- [Installation Docker](#installation-docker)
 
-## Installation - Non-Docker
+## Installation Non Docker
 Ensure Rails Todo API is installed first
 https://github.com/brandoncabael/rails-todo-api
 
@@ -23,7 +23,7 @@ Start development Server
 Navigate to hosted URL
 `http://localhost:5000`
 
-## Installation - Docker
+## Installation Docker
 Ensure Rails Todo API-Docker is installed first
 https://github.com/brandoncabael/rails-todo-api
 
