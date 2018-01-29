@@ -1,24 +1,38 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 
 
 
 class Signin extends Component {
-    constructor(props){
-        super(props)
+    constructor(){
+        super();
+        this.state = {
+            auth_key: ''
+        };
     }
 
 
     handleSubmit(event){
+        event.preventDefault();
+        event.stopPropagation();
         const data = new FormData(event.target);
-        fetch('http://localhost:3000/auth/login', {
-            method: 'POST',
-            body: data,
-        }).then(res => res.json())
-        .catch(error => console.error('Error:', error))
+        //var fetchResponse = {};
+        let obj = {
+            link: 'http://localhost:3000/auth/login',
+            body: {
+                method: 'POST',
+                body: data
+            }
+        };
+        fetch(obj.link, obj.body)
+        .then(res => res.json())
         .then(response => sessionStorage.setItem('token', response.auth_token));
+        //console.log(fetchResponse);
         
     }
+
+    //setResult(response){
+        //this.setState({auth_key: response.auth_token});
+    //}
 
     render(){
         return(
