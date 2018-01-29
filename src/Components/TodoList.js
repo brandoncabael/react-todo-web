@@ -5,7 +5,7 @@ class TodoList extends Component {
         super(props);
         this.state = {
             todos: [],
-            itemName: ''
+            itemName: ""
         }
         this.done = this.done.bind(this);
         this.delete = this.delete.bind(this);
@@ -30,13 +30,13 @@ class TodoList extends Component {
             todos.push(
                 <div>
                 <h2>{data[i].title}</h2>
-                <button onClick={e => this.deleteTodo(e, data[i].id)}>Delete?</button>
-                <form onSubmit={this.addItem(data[i].id)}>
+                <button onClick={e => this.deleteTodo(data[i].id, e)}>Delete?</button>
+                <form>
                 <lable>
                 Add Item: <br />
-                    <input type="text" name="name" />
+                    <input type="text" name="name" onKeyUp={e => this.itemNameChange("itemName", e)} />
                 </lable>
-                <input type="submit" name="submit" />
+                <button onClick={e => this.addItem(data[i].id, e)}>Submit</button>
                 </form>
                 </div>
         );
@@ -79,15 +79,15 @@ class TodoList extends Component {
     }
 
     done(e, id, todo) {
+        let data = new FormData();
+        data.append("done", true);
         let address = "http://localhost:3000/todos/" + todo + "/items/" + id;
         let body = {
             method: 'PUT',
             headers: {
                 Authorization: sessionStorage.getItem('token')
             },
-            body: {
-                done: true
-            }
+            body: data
         }
         fetch(address, body)
     }
@@ -103,7 +103,7 @@ class TodoList extends Component {
         fetch(address, body)
     }
 
-    deleteTodo(e, todo) {
+    deleteTodo(todo, e) {
         let address = "http://localhost:3000/todos/" + todo;
         let body = {
             method: 'DELETE',
@@ -134,8 +134,10 @@ class TodoList extends Component {
         console.log(this.state.itemName)
     }
 
-    addItem(todo) {
+    addItem(todo, event) {
         let data = new FormData();
+        data.append("name", this.state.itemName);
+        data.append("done", false);
         let address = "http://localhost:3000/todos/" + todo + "/items";
         let body = {
             method: 'POST',
